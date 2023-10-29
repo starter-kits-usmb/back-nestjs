@@ -1,0 +1,23 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - '${POSTGRES_PORT}:5432' # Expose the PostgreSQL on port 5432
+
+
+  # uncomment to deploy in prod.
+  # nestjs-app:
+  #   build:
+  #     context: ./nestjs-app # Path to your NestJS application code
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - '3000:3000' # Expose your app on port 3000
+  #   depends_on:
+  #     - postgres
+  #   env_file:
+  #     - .env
