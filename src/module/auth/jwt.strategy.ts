@@ -11,16 +11,16 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      ...conf,
+      secretOrKey: conf.secretOrKey,
     });
   }
 
   async validate(payload: any, done: Function) {
+    console.log('payload', payload);
     //if there is not token in payload
     if (!payload) {
       return done(null, false);
     }
-
     let user = await this.userService.findOne(payload.sub);
     if (user) {
       return done(null, user);

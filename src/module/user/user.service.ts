@@ -12,16 +12,31 @@ export class UserService {
     private usersRepository: Repository<User>,
   ) {}
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  async create(createUserDto: CreateUserDto) {
+    return this.usersRepository.save(createUserDto);
   }
 
   findAll() {
     return `This action returns all user`;
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
     return this.usersRepository.findOneBy({ id });
+  }
+
+  async findOneByUsername(username: string) {
+    return this.usersRepository.findOneBy({ username });
+  }
+
+  async getPasswordHash(id: number) {
+    let user = await this.usersRepository
+      .createQueryBuilder('user')
+      .addSelect('user.id', 'id')
+      .addSelect('user.password')
+      .where('id = :id', { id: id })
+      .getOne();
+    console.log('user.password', user);
+    return user.password;
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
