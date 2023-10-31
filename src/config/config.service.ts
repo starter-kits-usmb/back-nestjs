@@ -32,6 +32,21 @@ class ConfigService {
     return this.getValue('AUTH_PROVIDER_URL', true);
   }
 
+  public getPassportConfig() {
+    let config: any = {};
+
+    if (this.getValue('PASSPORT_ISSUER') != 'all') {
+      config.issuer = this.getValue('PASSPORT_ISSUER');
+    }
+    if (this.getValue('PASSPORT_AUDIENCE') != 'all') {
+      config.audience = this.getValue('PASSPORT_AUDIENCE');
+    }
+
+    config.secretOrKey = this.getValue('PASSPORT_SECRET');
+
+    return config;
+  }
+
   public getTypeOrmConfig(): TypeOrmModuleOptions {
     return {
       type: 'postgres',
@@ -47,6 +62,7 @@ class ConfigService {
       migrationsTableName: 'migration',
 
       migrations: ['src/migration/*.ts'],
+      synchronize: !this.isProduction(),
 
       ssl: this.isProduction(),
     };

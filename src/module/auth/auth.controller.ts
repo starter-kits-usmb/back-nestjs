@@ -1,7 +1,8 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { AuthParameters } from 'src/models/dtos/auth/auth-parameters';
-import { TokenPayload } from 'src/models/dtos/auth/token-payload';
+
 import { AuthService } from './auth.service';
+import { AuthParameters } from './dtos/auth-parameters';
+import { TokenPayload } from './dtos/token-payload';
 
 @Controller('auth')
 export class AuthController {

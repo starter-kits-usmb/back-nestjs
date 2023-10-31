@@ -2,8 +2,8 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable, Logger } from '@nestjs/common';
 import { AxiosError } from 'axios';
 import { catchError, firstValueFrom } from 'rxjs';
-import { AuthPayload } from 'src/models/dtos/auth/auth-payload';
-import { configService } from '../services/config/config.service';
+import { configService } from '../../config/config.service';
+import { AuthPayload } from './dtos/auth-payload';
 
 @Injectable()
 export class AuthService {
