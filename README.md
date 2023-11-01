@@ -2,10 +2,11 @@
 
 This is a starter kit for NestJS projects. It includes the following:
 
-- [ ] (WIP) Authentication with JWT from custom provider (see [auth-nodejs-express](https://github.com/starter-kits-usmb/auth-nodejs-express))
-- [ ] (WIP) TypeOrm for Postgres
+- [x] Authentication with JWT
+- [x] TypeOrm for PostgresSql
 - [x] Docker compose for local development
-- [ ] (WIP) Docker compose for production
+- [x] Swagger documentation available at `/api`
+- [ ] Docker compose for production (db + automatically build the app and run it in a container)
 
 ## Installation
 

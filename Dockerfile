@@ -1,5 +1,8 @@
 # Stage 1: Build the application
-FROM node:16.13.2-alpine3.15 as builder
+FROM node:latest as builder
+
+# Source the .env file to make the environment variables available
+RUN /bin/bash -c "source .env
 
 WORKDIR /app
 
@@ -7,7 +10,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install application dependencies
-RUN npm install --production
+RUN npm install --omit=dev
 
 # Copy the rest of the application source code to the container
 COPY . .
@@ -26,8 +29,12 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/package-lock.json ./
 
-# Expose the port your NestJS application will run on (adjust as needed)
-EXPOSE 3001
+# Expose the port your NestJS application will run on (adjust as needed) get port from .env file
 
-# Command to start your NestJS application in production mode
-CMD ["npm run migrate", "node dist/main.js"]
+
+
+
+# run node dist/main.js to start your NestJS application
+CMD ["node", "./dist/main.js"]
+
+
