@@ -35,6 +35,9 @@ export class AuthService {
   }
 
   async login(login: string, password: string): Promise<TokenPayload> {
+    if (!login || !password) {
+      throw new HttpException('Wrong credentials', HttpStatus.UNAUTHORIZED);
+    }
     let user = await this.userService.findOneByLogin(login);
     if (!user) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
