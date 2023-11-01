@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, Exclusion, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
@@ -9,7 +9,7 @@ export class User {
 
   @ApiProperty()
   @Column({ unique: true })
-  username: string;
+  login: string;
 
   //no api property as we don't want to expose the password
   @Column({ select: false })

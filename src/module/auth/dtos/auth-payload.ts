@@ -5,5 +5,5 @@ export class AuthPayload {
   id: number;
 
   @ApiProperty()
-  username: string;
+  login: string;
 }

@@ -15,7 +15,7 @@ import {
 import { AuthPayload } from '../dtos/auth-payload';
 import { TokenPayload } from '../dtos/token-payload';
 
-@ApiTags('user')
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   private readonly logger = new Logger(AuthController.name);
@@ -53,6 +53,6 @@ export class AuthController {
   @ApiAcceptedResponse({ description: 'User authenticated' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   async auth() {
-    return 'User authenticated';
+    return { message: 'User authenticated' };
   }
 }

@@ -1,9 +1,6 @@
 # Stage 1: Build the application
 FROM node:latest as builder
 
-# Source the .env file to make the environment variables available
-RUN /bin/bash -c "source .env
-
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the container
@@ -30,8 +27,7 @@ COPY --from=builder /app/package.json ./
 COPY --from=builder /app/package-lock.json ./
 
 # Expose the port your NestJS application will run on (adjust as needed) get port from .env file
-
-
+EXPOSE $PORT
 
 
 # run node dist/main.js to start your NestJS application

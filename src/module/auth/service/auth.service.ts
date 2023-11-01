@@ -1,8 +1,4 @@
-import { HttpService } from '@nestjs/axios';
-import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
-import { AxiosError } from 'axios';
-import { catchError, firstValueFrom } from 'rxjs';
-import { configService } from '../../../config/config.service';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { AuthPayload } from '../dtos/auth-payload';
 import * as bcrypt from 'bcrypt';
 import { UserService } from '../../user/service/user.service';
@@ -11,11 +7,7 @@ import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  private readonly logger = new Logger(AuthService.name);
-  private url_prefix = configService.getAuthProviderUrl();
-
   constructor(
-    private readonly httpService: HttpService,
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
   ) {}
@@ -28,12 +20,12 @@ export class AuthService {
     let response: AuthPayload;
     try {
       let res = await this.userService.create({
-        username: login,
+        login: login,
         password: hash,
       });
       response = {
         id: res.id,
-        username: res.username,
+        login: res.login,
       };
     } catch (error) {
       throw new HttpException('User already exist', HttpStatus.NOT_ACCEPTABLE);
@@ -43,7 +35,7 @@ export class AuthService {
   }
 
   async login(login: string, password: string): Promise<TokenPayload> {
-    let user = await this.userService.findOneByUsername(login);
+    let user = await this.userService.findOneByLogin(login);
     if (!user) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }

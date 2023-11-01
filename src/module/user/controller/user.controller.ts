@@ -23,6 +23,7 @@ import {
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { User } from '../entity/user.entity';
+import { UserDto } from '../dto/user.dto';
 
 @ApiTags('user')
 @Controller('user')
@@ -30,7 +31,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  @ApiCreatedResponse({ type: User })
+  @ApiCreatedResponse({ type: UserDto })
   @ApiNotAcceptableResponse({ description: 'User already exist' })
   @ApiNotAcceptableResponse({ description: 'Invalid user' })
   create(@Body() createUserDto: CreateUserDto) {
@@ -43,9 +44,9 @@ export class UserController {
     name: 'Authorization',
     description: 'Bearer <token>',
   })
-  @ApiAcceptedResponse({ type: User })
+  @ApiAcceptedResponse({ type: UserDto })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  getProfile(@Request() req): User {
+  getProfile(@Request() req): UserDto {
     return req.user;
   }
 

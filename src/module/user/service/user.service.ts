@@ -13,9 +13,9 @@ export class UserService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    //check if username already exist
+    //check if login already exist
     let user = await this.usersRepository.findOneBy({
-      username: createUserDto.username,
+      login: createUserDto.login,
     });
 
     if (user) {
@@ -37,8 +37,8 @@ export class UserService {
     return user;
   }
 
-  async findOneByUsername(username: string) {
-    return this.usersRepository.findOneBy({ username });
+  async findOneByLogin(login: string) {
+    return this.usersRepository.findOneBy({ login });
   }
 
   async getPasswordHash(id: number) {
