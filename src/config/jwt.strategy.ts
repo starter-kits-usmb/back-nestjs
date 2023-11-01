@@ -1,8 +1,8 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
-import { configService } from '../../config/config.service';
-import { UserService } from '../user/user.service';
+import { configService } from './config.service';
+import { UserService } from '../module/user/service/user.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -16,7 +16,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any, done: Function) {
-    console.log('payload', payload);
     //if there is not token in payload
     if (!payload) {
       return done(null, false);

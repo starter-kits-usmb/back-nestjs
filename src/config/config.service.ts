@@ -43,7 +43,6 @@ class ConfigService {
     }
 
     config.secretOrKey = this.getValue('PASSPORT_SECRET');
-    console.log('config', config);
     return config;
   }
 

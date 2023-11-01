@@ -2,11 +2,11 @@ import { HttpService } from '@nestjs/axios';
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { AxiosError } from 'axios';
 import { catchError, firstValueFrom } from 'rxjs';
-import { configService } from '../../config/config.service';
-import { AuthPayload } from './dtos/auth-payload';
+import { configService } from '../../../config/config.service';
+import { AuthPayload } from '../dtos/auth-payload';
 import * as bcrypt from 'bcrypt';
-import { UserService } from '../user/user.service';
-import { TokenPayload } from './dtos/token-payload';
+import { UserService } from '../../user/service/user.service';
+import { TokenPayload } from '../dtos/token-payload';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()

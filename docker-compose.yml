@@ -10,10 +10,10 @@ services:
       - '${POSTGRES_PORT}:5432' # Expose the PostgreSQL on port 5432
 
 
-  # uncomment to deploy in prod.
+  # uncomment to deploy in prod. (wip)
   # nestjs-app:
   #   build:
-  #     context: ./nestjs-app # Path to your NestJS application code
+  #     context: . # Path to your NestJS application code
   #     dockerfile: Dockerfile
   #   ports:
   #     - '3000:3000' # Expose your app on port 3000
