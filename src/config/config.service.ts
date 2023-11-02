@@ -28,10 +28,6 @@ class ConfigService {
     return mode != 'DEV';
   }
 
-  public getAuthProviderUrl() {
-    return this.getValue('AUTH_PROVIDER_URL', true);
-  }
-
   public getPassportConfig() {
     let config: any = {};
 
