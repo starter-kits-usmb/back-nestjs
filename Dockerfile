@@ -13,5 +13,3 @@ RUN npm run build
 
 # Expose the necessary port (if needed)
 EXPOSE 3000
-
-RUN node ./dist/main.js

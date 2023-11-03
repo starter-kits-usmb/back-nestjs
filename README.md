@@ -2,11 +2,16 @@
 
 This is a starter kit for NestJS projects. It includes the following:
 
-- [x] Authentication with JWT
-- [x] TypeOrm for PostgresSql
-- [x] Docker compose for local development
+- [x] A `README.md` file with a description of the project and how to run it
+- [x] Scalable folder structure
+- [x] Linter and prettier
+- [x] Authentification with JWT.
+- [x] Auth guard for routes
+- [x] Database setup (postgres)
 - [x] Swagger documentation available at `/api`
-- [ ] Docker compose for production (db + automatically build the app and run it in a container)
+- [x] Test setup
+- [x] docker compose file for development & production
+- [x] TypeOrm
 
 ## Installation
 
@@ -14,7 +19,9 @@ This is a starter kit for NestJS projects. It includes the following:
 $ npm install
 ```
 
-## Running the app
+Copy the `.env.example` file to `.env` and fill in the values.
+
+## Running the app for development
 
 ```bash
 # start the database
@@ -26,7 +33,9 @@ $ npm run start:dev
 
 ## Deploying the app
 
-Uncomment the `nestjs-app` service in docker-compose.yml and run the following command:
+Copy the `.env.prod.example` file to `.env.prod` and fill in the values.
+
+Uncomment the `nestjs-app` service, change .env to .env.prod for databaes service in docker-compose.yml and run the following command:
 
 ```bash
 # run docker build
