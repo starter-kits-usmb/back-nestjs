@@ -18,5 +18,14 @@ async function bootstrap() {
   const logger = new Logger('MAIN');
   logger.log(`Server running on port ${configService.getPort()}`);
   await app.listen(configService.getPort());
+
+  function handle(signal) {
+    logger.log(`Received event: ${signal}`);
+    logger.log('exit process');
+    process.exit(0);
+  }
+
+  process.on('SIGINT', handle);
+  process.on('SIGTERM', handle);
 }
 bootstrap();
