@@ -25,8 +25,8 @@ class ConfigService {
   }
 
   public isProduction() {
-    const mode = this.getValue('MODE', false);
-    return mode != 'DEV';
+    const mode = this.getValue('NODE_ENV', false);
+    return mode != 'development';
   }
 
   public getPassportConfig() {
