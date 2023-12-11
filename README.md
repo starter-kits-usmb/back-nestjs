@@ -37,6 +37,8 @@ Copy the `.env.prod.example` file to `.env.prod` and fill in the values.
 
 Uncomment the `nestjs-app` service, change .env to .env.prod for databaes service in docker-compose.yml and run the following command:
 
+!!! danger Make sure that you have wrote the migrations for the database otherwise the app will not have the correct tables
+
 ```bash
 # run docker build
 $ docker-compose up -d --build
